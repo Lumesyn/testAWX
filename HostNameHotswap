@@ -1,0 +1,15 @@
+---
+- name: Update Aruba Switch Hostname
+  gather_facts: no
+  collections:
+    - community.network
+
+  tasks:
+    - name: Generate random four-digit number
+      set_fact:
+        random_number: "{{ 1000 | random(start=1000, end=9999) }}"
+
+    - name: Set hostname on the Aruba switch
+      aruba_config:
+        lines:
+          - "hostname HMLB-{{ random_number }}"
