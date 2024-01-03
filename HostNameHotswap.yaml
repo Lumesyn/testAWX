@@ -12,8 +12,7 @@
 
     - name: Debug random_number
       debug:
-      var: random_number
-
+        var: random_number
 
     - name: Set hostname on the Aruba switch
       community.network.aruba_config:
