@@ -1,6 +1,7 @@
 ---
 - name: Update Aruba Switch Hostname
   gather_facts: no
+  hosts: all
   collections:
     - community.network
 
