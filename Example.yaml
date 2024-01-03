@@ -1,3 +1,10 @@
+---
+- name: Update Aruba Switch Hostname
+  gather_facts: no
+  hosts: all
+  collections:
+    - community.network
+    
 tasks:
   - name: Run show version on remote devices
     community.network.aruba_command:
