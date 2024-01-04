@@ -9,7 +9,7 @@
     - name: Run show version on remote devices
       aoscx_command:
         commands: show version
-        register: sh_ver
+      register: sh_ver
     
     - name: Output registered variable
       debug:
