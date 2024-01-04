@@ -14,6 +14,7 @@
         generated_password: "{{ pwd_alias }}"
     
     - name: Write Password to a file
+    - local_action:
       copy:
         content: "{{ generated_password }}"
         dest: ~/home/$USER/Documents/password_file.txt
