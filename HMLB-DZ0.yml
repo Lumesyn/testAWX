@@ -10,22 +10,21 @@
     - set_fact:
         generated_password: "{{ pwd_alias }}"
     - name: Write Password to a file
-      local_action:
-        copy: null
-        content: "{{ generated_password }}"
-        dest: ~/$USER/Documents/password_file.txt
+        local_action:
+          copy: null
+          content: "{{ generated_password }}"
+          dest: ~/$USER/Documents/password_file.txt
     - name: Generate random four-digit number
-      set_fact:
-        random_number: "{{ 1000 | random(start=1000) }}"
+        set_fact:
+          random_number: "{{ 1000 | random(start=1000) }}"
     - name: Debug random_number
-      debug:
-        var: random_number
+        debug:
+          var: random_number
     - name: Set hostname on the Aruba switch
-      aoscx_config:
-        commands:
-          - hostname HMLB-{{ random_number }}
+        aoscx_config:
+          commands:
+          - "hostname HMLB-{{ random_number }}"
     - name: Set admin password for the switch
-      aoscx_config:
-        commands:
-          - user hladmin group administrators password plaintext {{
-            generated_password }}
+        aoscx_config:
+          commands:
+            - "user hladmin group administrators password plaintext {{ generated_password }}"
