@@ -1,4 +1,4 @@
   collections:
     - community.network
     - arubanetworks.aoscx  
-    - community.general.password
+    - community.general
