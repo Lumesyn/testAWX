@@ -3,9 +3,10 @@
   gather_facts: no
   hosts: all
   collections:
-    - community.network
+    - arubanetworks.aoscx
 
   tasks:
+  
     - name: Generate random four-digit number
       set_fact:
         random_number: "{{ 1000 | random(start=1000, end=9999) }}"
@@ -15,6 +16,6 @@
         var: random_number
 
     - name: Set hostname on the Aruba switch
-      community.network.aruba_config:
-        lines:
+      aoscx_command:
+        commands:
           - "hostname HMLB-{{ random_number }}"
