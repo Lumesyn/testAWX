@@ -21,15 +21,14 @@
           content: "{{ generated_password }}"
           dest: ~/$USER/Documents/password_file.txt
           
-    
     - name: Debug random_number
         debug:
-          var: random_number
+        var: random_number
     
     - name: Set hostname on the Aruba switch
         aoscx_config:
-          commands:
-          - "hostname HMLB-{{ random_number }}"
+            commands:
+              - "hostname HMLB-{{ random_number }}"
     
     - name: Set admin password for the switch
         aoscx_config:
