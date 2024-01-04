@@ -1,0 +1,36 @@
+---
+- name: Update Aruba Switch Hostname
+  gather_facts: no
+  hosts: all
+  collections:
+    - arubanetworks.aoscx
+
+  tasks:
+    - name: Gernerate a new password. 
+      community.general.password:
+        path: /tmp/password_file
+        length: 12
+      register: generated_password
+
+    -name: Write Password to a file. 
+     copy:
+       content: "{{generated_password.password }}"
+       dest: ~/Documents/password_file.txt
+  
+    - name: Generate random four-digit number
+      set_fact:
+        random_number: "{{ 10000 | random }}"
+
+    - name: Debug random_number
+      debug:
+        var: random_number
+
+    - name: Set hostname on the Aruba switch
+      aoscx_config:
+        commands:
+          - "hostname HMLB-{{ random_number }}"
+
+    -name: Set admin password for the switch. 
+      aoscx_config:
+        commands:
+         - "user hladmin group administrators password plaintext {{ generated_password.password }}"
