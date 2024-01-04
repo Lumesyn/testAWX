@@ -7,7 +7,7 @@
     - community.general.passwordstore
   tasks:
     - name: Generate a new password
-      community.general.password:
+      community.general.passwordstore:
         path: /tmp/password_file
         length: 12
       register: generated_password
