@@ -1,0 +1,36 @@
+---
+- name: Aruba Examples
+  gather_facts: no
+  hosts: all
+  collections:
+    - arubanetworks.aoscx
+
+  tasks:
+    - name: Run show version on remote devices
+      aoscx_command:
+        commands: show version
+        register: sh_ver
+    
+    - name: Output registered variable
+      debug:
+        var: sh_ver
+
+    - name: Run show version and check to see if output contains Aruba
+      aoscx_command:
+        commands: show version
+        wait_for: result[0] contains Aruba
+
+    - name: Run multiple commands on remote nodes
+      aoscx_command:
+        commands:
+          - show version
+          - show interfaces
+
+    - name: Run multiple commands and evaluate the output
+      aoscx_command:
+        commands:
+          - show version
+          - show interfaces
+        wait_for:
+          - result[0] contains Aruba
+          - result[1] contains Loopback0
