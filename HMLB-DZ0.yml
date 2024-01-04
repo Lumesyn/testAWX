@@ -11,11 +11,11 @@
   tasks:
     
     - set_fact:
-        my_pass: "{{ pwd_alias }}"
+        generated_password: "{{ pwd_alias }}"
     
     - name: Write Password to a file
       copy:
-        content: "{{ generated_password.password }}"
+        content: "{{ generated_password }}"
         dest: ~/Documents/password_file.txt
     
     - name: Generate random four-digit number
@@ -35,4 +35,4 @@
       aoscx_config:
         commands:
           - user hladmin group administrators password plaintext {{
-            generated_password.password }}
+            generated_password }}
