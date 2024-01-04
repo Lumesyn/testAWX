@@ -9,7 +9,8 @@
   
     - name: Generate random four-digit number
       set_fact:
-        random_number: "{{ 1000 | random(start=1000, end=9999) }}"
+      random_number: "{{ 1000 | random }}"
+    run_once: yes
 
     - name: Debug random_number
       debug:
