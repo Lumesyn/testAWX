@@ -15,7 +15,7 @@
     - name: Write Password to a file
       copy:
         content: "{{ generated_password.password }}"
-        dest: /home/yourusername/Documents/password_file.txt  # Replace 'yourusername' with actual username
+        dest: ~/Documents/password_file.txt  # Replace 'yourusername' with actual username
 
     - name: Generate random four-digit number
       set_fact:
