@@ -18,7 +18,7 @@
     - name: Write Password to a file
       copy:
         content: "{{ generated_password }}"
-        dest: ~/$USER/Documents/password_file.txt
+        dest: /hollin/Documents/password_file.txt
       delegate_to: localhost
     
     - name: Set hostname on the Aruba switch
