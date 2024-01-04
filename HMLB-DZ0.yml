@@ -6,7 +6,7 @@
     - arubanetworks.aoscx
   vars:
     pwd_alias: "{{ lookup('password', '/dev/null length=15 chars=ascii_letters') }}"
-    host_alias: "{{ 1000 | random(start=1000) }}"
+    host_alias: "{{ 1000 | random }}"
   
   tasks:
   
