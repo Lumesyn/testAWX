@@ -10,7 +10,6 @@
     - name: Generate random four-digit number
       set_fact:
       random_number: "{{ 1000 | random }}"
-    run_once: yes
 
     - name: Debug random_number
       debug:
