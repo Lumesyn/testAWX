@@ -6,20 +6,20 @@
     - arubanetworks.aoscx
 
   tasks:
-    - name: Gernerate a new password. 
+    - name: Generate a new password
       community.general.password:
         path: /tmp/password_file
         length: 12
       register: generated_password
 
-    -name: Write Password to a file. 
-     copy:
-       content: "{{generated_password.password }}"
-       dest: ~/Documents/password_file.txt
-  
+    - name: Write Password to a file
+      copy:
+        content: "{{ generated_password.password }}"
+        dest: /home/yourusername/Documents/password_file.txt  # Replace 'yourusername' with actual username
+
     - name: Generate random four-digit number
       set_fact:
-        random_number: "{{ 10000 | random }}"
+        random_number: "{{ 1000 | random(start=1000) }}"
 
     - name: Debug random_number
       debug:
@@ -30,7 +30,7 @@
         commands:
           - "hostname HMLB-{{ random_number }}"
 
-    -name: Set admin password for the switch. 
+    - name: Set admin password for the switch
       aoscx_config:
         commands:
-         - "user hladmin group administrators password plaintext {{ generated_password.password }}"
+          - "user hladmin group administrators password plaintext {{ generated_password.password }}"
