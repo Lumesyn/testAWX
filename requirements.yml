@@ -1,4 +1,3 @@
   collections:
     - community.network
-    - arubanetworks.aos_switch
     - arubanetworks.aoscx  
