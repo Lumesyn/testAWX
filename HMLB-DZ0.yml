@@ -6,24 +6,31 @@
     - arubanetworks.aoscx
   vars:
     pwd_alias: "{{ lookup('password', '/dev/null length=15 chars=ascii_letters') }}"
+    host_alias: "{{ 1000 | random(start=1000) }}"
+  
   tasks:
+  
     - set_fact:
         generated_password: "{{ pwd_alias }}"
+    - set_fact:
+        random_number: "{{ host_alias }}"
+        
     - name: Write Password to a file
       local_action:
         copy:
           content: "{{ generated_password }}"
           dest: ~/$USER/Documents/password_file.txt
-    - name: Generate random four-digit number
-        set_fact:
-          random_number: "{{ 1000 | random(start=1000) }}"
+          
+    
     - name: Debug random_number
         debug:
           var: random_number
+    
     - name: Set hostname on the Aruba switch
         aoscx_config:
           commands:
           - "hostname HMLB-{{ random_number }}"
+    
     - name: Set admin password for the switch
         aoscx_config:
           commands:
