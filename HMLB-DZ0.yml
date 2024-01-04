@@ -13,11 +13,11 @@
     - set_fact:
         generated_password: "{{ pwd_alias }}"
     
-    - name: Write Password to a file
-    - local_action:
-      copy:
-        content: "{{ generated_password }}"
-        dest: ~/home/$USER/Documents/password_file.txt
+- name: Write Password to a file
+  local_action:
+    copy:
+      content: "{{ generated_password }}"
+      dest: ~/$USER/Documents/password_file.txt
     
     - name: Generate random four-digit number
       set_fact:
