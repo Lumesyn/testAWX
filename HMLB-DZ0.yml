@@ -4,6 +4,7 @@
   hosts: all
   collections:
     - arubanetworks.aoscx
+    - community.general.passwordstore
   tasks:
     - name: Generate a new password
       community.general.password:
